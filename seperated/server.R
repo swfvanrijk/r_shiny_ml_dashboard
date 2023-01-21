@@ -133,25 +133,6 @@ server <- function(input, output, session){
     })
     
     
-    output$clusterPLotd <- renderPlot({
-        
-        df <- df()[,c(input$colClust1d,input$colClust2d)]
-        
-        col1 <- sym(input$colClust1d)
-        col2 <- sym(input$colClust2d)
-        
-        
-            # not yet implemented
-            d <- dbscan(df, eps = .3, minPts = 5)
-            
-            clusters <- as.factor(d$cluster)
-            
-            df() %>% ggplot(aes(x= !! col1, 
-                                y= !! col2,
-                                color=clusters)) +
-                geom_point()
-        
-    })
     
     
 }

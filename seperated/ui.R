@@ -1,42 +1,14 @@
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
-library(dbscan)
 
-header <- dashboardHeader(title = "AutoML 2.0",
-                          dropdownMenu(type = "notifications",
-                                       notificationItem(
-                                         text = "5 new users today",
-                                         icon("users")
-                                       ),
-                                       notificationItem(
-                                         text = "12 items delivered",
-                                         icon("truck"),
-                                         status = "success"
-                                       ),
-                                       notificationItem(
-                                         text = "Server load at 86%",
-                                         icon = icon("exclamation-triangle"),
-                                         status = "warning"
-                                       )),
-                          dropdownMenu(type = "tasks", badgeStatus = "success",
-                                       taskItem(value = 90, color = "green",
-                                                "Documentation"
-                                       ),
-                                       taskItem(value = 17, color = "aqua",
-                                                "Project X"
-                                       ),
-                                       taskItem(value = 75, color = "yellow",
-                                                "Server deployment"
-                                       ),
-                                       taskItem(value = 80, color = "red",
-                                                "Overall project"
-                                       )
-                          )
-            )
+header <- dashboardHeader(title = "Machine Learning")
   
 sidebar <- dashboardSidebar(
   sidebarMenu(id="tabs",
+              menuItem("About",
+                       tabName = "about", 
+                       icon = icon("info")),
               menuItem("File",
                        tabName = "file", 
                        icon = icon("file-csv")),
@@ -65,6 +37,35 @@ sidebar <- dashboardSidebar(
   
 body <- dashboardBody(
         tabItems(
+          
+          # about
+          tabItem(tabName = "about",
+                  
+                  box(title = 'How to use',status = "primary",
+                      
+                  p('Follow the steps below if you are unfamiliar with Machine Learning and wish to use this dashboard.'),
+                  
+                  
+                  
+                  tabItem(tabName = "clustering",
+                          tabsetPanel(type = "tabs",
+                                      tabPanel("1",
+                                               br(),
+                                               strong('Upload your data'),br(),br(),
+                                               p('The data must be in a csv file and seperated by comma\'s ( , ) or semicolons ( ; ).
+                                               
+                                               
+                                                ')
+                                              ),
+                                      tabPanel("2", 
+                                               br(),
+                                               strong('Explore your data'),br(),br()
+                                              )
+                                    )
+                          )
+                  )
+                  
+          ),
           
             # File
             tabItem(tabName = "file",
